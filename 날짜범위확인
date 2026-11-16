@@ -1,0 +1,18 @@
+AND (
+    -- 평소
+    (
+        TO_CHAR(SYSDATE, 'MMDD') <= TO_CHAR(SYSDATE + 7, 'MMDD')
+        AND SUBSTR(대상날짜, 5, 4)
+            BETWEEN TO_CHAR(SYSDATE, 'MMDD')
+                AND TO_CHAR(SYSDATE + 7, 'MMDD')
+    )
+    OR
+    -- 연도를 넘기는 경우
+    (
+        TO_CHAR(SYSDATE, 'MMDD') > TO_CHAR(SYSDATE + 7, 'MMDD')
+        AND (
+            SUBSTR(대상날짜, 5, 4) >= TO_CHAR(SYSDATE, 'MMDD')
+            OR SUBSTR(대상날짜, 5, 4) <= TO_CHAR(SYSDATE + 7, 'MMDD')
+        )
+    )
+)
