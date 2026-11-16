@@ -1,0 +1,19 @@
+function saveMonthly(startDate, endDate) {
+    var start = new Date(startDate.replace(/-/g, "/"));
+    var end = new Date(endDate.replace(/-/g, "/"));
+
+    var count = (end.getFullYear() - start.getFullYear()) * 12
+              + end.getMonth() - start.getMonth() + 1;
+
+    for (var i = 0; i < count; i++) {
+        var date = new Date(start.getFullYear(), start.getMonth() + i, 1);
+
+        var yyyymm = date.getFullYear()
+                   + ("0" + (date.getMonth() + 1)).slice(-2);
+
+        // 월별 저장 처리
+        console.log(yyyymm);
+    }
+}
+
+saveMonthly("2026-09-13", "2026-11-16");
